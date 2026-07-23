@@ -1,0 +1,245 @@
+/*
+ * Chispot marketing site — design tokens mirrored from the mobile app theme
+ * (chispot_mobile/src/theme). Accent is the app-wide azure; neutrals and dark
+ * mode follow the same palette so the web presence reads as the same product.
+ */
+
+:root {
+  /* Brand — one blue everywhere (matches the app accent, palette.blue500). */
+  --accent: #339af0;
+
+  /* Light theme (default) */
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-tertiary: #888888;
+  --border: #e1e1e6;
+  --accent-surface: rgba(51, 154, 240, 0.12);
+
+  /* Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 40px;
+  --space-3xl: 64px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --maxw: 720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --bg-alt: #1c1c1e;
+    --surface: #1c1c1e;
+    --text-primary: #f2f2f7;
+    --text-secondary: #aeaeb2;
+    --text-tertiary: #8e8e93;
+    --border: #3a3a3c;
+    --accent-surface: rgba(51, 154, 240, 0.18);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+/* ---- Brand mark ---- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.brand:hover {
+  text-decoration: none;
+}
+/* App-icon badge: the white splash mark on the brand accent blue. */
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.brand-badge img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+/* ---- Site header ---- */
+.site-header {
+  padding: var(--space-xl) 0;
+}
+
+/* ---- Hero (coming soon) ---- */
+.hero {
+  min-height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-2xl) 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  align-self: flex-start;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--accent-surface);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-size: clamp(34px, 7vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+.hero h1 .accent {
+  color: var(--accent);
+}
+
+.lede {
+  font-size: clamp(18px, 2.5vw, 21px);
+  color: var(--text-secondary);
+  max-width: 34em;
+  margin: 0 0 var(--space-2xl);
+}
+
+/* ---- Store slot (swap in real badges + links at launch) ---- */
+.stores {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+.store-note {
+  color: var(--text-tertiary);
+  font-size: 15px;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background 0.15s ease;
+}
+.cta:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-xl) 0 var(--space-2xl);
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+.site-footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  align-items: center;
+}
+.site-footer .sep {
+  color: var(--border);
+}
+.site-footer a {
+  color: var(--text-secondary);
+}
+
+/* ---- Document pages (privacy / support) ---- */
+.doc {
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+.doc h1 {
+  font-size: clamp(28px, 5vw, 38px);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-sm);
+}
+.doc .updated {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin: 0 0 var(--space-2xl);
+}
+.doc h2 {
+  font-size: 20px;
+  margin: var(--space-2xl) 0 var(--space-sm);
+  letter-spacing: -0.01em;
+}
+.doc p,
+.doc li {
+  color: var(--text-secondary);
+}
+.doc ul {
+  padding-left: var(--space-xl);
+}
+.doc li {
+  margin-bottom: var(--space-xs);
+}
+.back {
+  display: inline-block;
+  margin-top: var(--space-2xl);
+  font-weight: 600;
+}
