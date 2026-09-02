@@ -9,6 +9,12 @@
       content="How Chispot Inc. collects, uses, and protects your information."
     />
     <meta name="theme-color" content="#339AF0" />
+    <!-- LAUNCH SLOT — deployed but unlisted until the app ships. This URL is a
+         mandatory App Store Connect metadata field and is opened from the
+         registration checkbox and the Settings row, so it must resolve; nothing
+         on the marketing site links here in the meantime. At launch: delete
+         this meta and add the footer link in index.html. -->
+    <meta name="robots" content="noindex" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -27,30 +33,207 @@
     <main class="doc">
       <div class="wrap">
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: July 23, 2026</p>
+        <!-- This document's own revision date, deliberately independent of
+             terms.html's. It matches today only because both were written at
+             once. Do NOT tie it to LegalConstants.CURRENT_TERMS_VERSION: that
+             constant drives Terms re-acceptance, so coupling them would make a
+             privacy clarification re-prompt every user to accept unchanged
+             Terms. Bump this alone when this page changes. -->
+        <p class="updated">Last updated: August 31, 2026</p>
 
         <p>
           <strong>Chispot Inc.</strong> ("Chispot", "we", "us") is a corporation
-          based in Ottawa, Ontario, Canada, and we take your privacy seriously.
+          based in Ottawa, Ontario, Canada. This policy explains what we collect
+          when you use the Chispot app, why we collect it, who else sees it, and
+          what you can do about it.
         </p>
 
+        <h2>What we collect</h2>
+        <p><strong>When you create an account:</strong></p>
+        <ul>
+          <li>Your username and email address.</li>
+          <li>
+            Your password, which we store only as a salted hash — we never hold
+            the password itself and cannot recover it for you.
+          </li>
+          <li>
+            <strong>Your date of birth.</strong> Chispot is for people aged 16
+            and over, and we ask for a date rather than a yes/no answer so the
+            question is a neutral one. We keep the date itself, not just a
+            pass/fail result, because if a question later arises about an
+            account's age the only honest answer is what was actually declared,
+            and when.
+          </li>
+          <li>
+            The fact that you accepted these terms, the moment you accepted
+            them, and which version you accepted.
+          </li>
+        </ul>
+
+        <p><strong>When you use the app:</strong></p>
+        <ul>
+          <li>
+            Content you post — photos, videos, text, comments and messages —
+            and who you posted it to.
+          </li>
+          <li>
+            Your device's location, when you grant permission. Chispot is built
+            around physical places, so features like nearby places and the map
+            need it. You can withdraw the permission at any time in your
+            device's settings; those features stop working, the rest of the app
+            does not.
+          </li>
+          <li>
+            The places you create, join, or save, and the people you befriend or
+            block.
+          </li>
+          <li>
+            A device token, if you turn on push notifications, so we can deliver
+            them.
+          </li>
+          <li>
+            Basic technical and diagnostic data — app version, device model, OS
+            version, and crash reports. Crash reports go to Sentry and are tied
+            to your account id so we can tell whether a bug affects one person
+            or everyone. They never include your email address.
+          </li>
+        </ul>
+
+        <h2>What we do with it</h2>
+        <ul>
+          <li>Operate the app: show you content, deliver messages, run the map.</li>
+          <li>Keep accounts secure and sessions valid.</li>
+          <li>
+            Review reports of objectionable content and abusive behaviour, and
+            enforce our <a href="terms.html">Terms of Service</a>.
+          </li>
+          <li>Fix crashes and diagnose problems.</li>
+          <li>Send you service email — verification and password-reset codes.</li>
+        </ul>
         <p>
-          Chispot is not yet publicly available. Today the only way to interact
-          with us is through this website and by email. We do not collect personal
-          information from visitors to this site beyond the standard technical data
-          your browser sends automatically, together with any information you
-          choose to include when you contact us.
+          We do not sell your personal information. We do not show third-party
+          advertising, and we do not share your information with advertisers.
         </p>
 
+        <h2>Who else sees it</h2>
         <p>
-          Before Chispot becomes available, we will publish our complete privacy
-          policy here — describing what information we collect, how we use and
-          protect it, who we share it with, and the choices and rights you have.
+          <strong>Other users</strong> see what you post, according to the
+          privacy settings on your account and on the place you post to. Your
+          username and profile pictures are visible to people who can see your
+          content. Your email address and date of birth are never shown to other
+          users.
+        </p>
+        <p>
+          <strong>Service providers</strong> process data on our behalf and only
+          on our instructions:
+        </p>
+        <ul>
+          <li>
+            <strong>Amazon Web Services</strong> — storage and delivery of
+            photos and videos, and video transcoding (United States).
+          </li>
+          <li>
+            <strong>Render</strong> — application servers and databases (United
+            States).
+          </li>
+          <li>
+            <strong>Sentry</strong> — crash and error reporting.
+          </li>
+          <li>
+            <strong>Apple and Google</strong> — delivery of push notifications
+            to your device.
+          </li>
+        </ul>
+        <p>
+          We may also disclose information where we are legally required to, or
+          where it is necessary to protect someone's safety or our rights.
+        </p>
+
+        <h2>Where your data is held</h2>
+        <p>
+          We are based in Canada and our servers are in the United States. If
+          you use Chispot from outside those countries, your information is
+          transferred to and processed there, under contractual protections with
+          each provider.
+        </p>
+
+        <h2>How long we keep it</h2>
+        <ul>
+          <li>
+            Account data, for as long as your account exists.
+          </li>
+          <li>
+            Content, until you delete it or delete your account.
+          </li>
+          <li>
+            Deleted media is removed from our storage, though copies may persist
+            briefly in caches and backups.
+          </li>
+          <li>
+            Verification and reset codes expire within minutes. An abandoned
+            registration is discarded automatically.
+          </li>
+          <li>
+            Records relating to safety reports and enforcement may be kept
+            longer where we need them to prevent repeat harm or to meet a legal
+            obligation.
+          </li>
+        </ul>
+
+        <h2>Deleting your account</h2>
+        <p>
+          Settings › Manage account › Delete account. This is permanent. It
+          removes your account and the places you own, along with those places'
+          posts, members and messages. Posts and comments you made elsewhere
+          remain but are detached and shown as coming from a deleted user.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          Depending on where you live, you may have the right to access, correct,
+          delete, or receive a copy of your personal information, to object to or
+          restrict how we use it, and to withdraw consent. Email
+          <a href="mailto:admin@chispots.com">admin@chispots.com</a> and we will
+          respond.
+        </p>
+        <p>
+          If you are in Canada you may complain to the Office of the Privacy
+          Commissioner of Canada; if you are in the EEA or UK, to your local data
+          protection authority.
+        </p>
+
+        <h2>Children</h2>
+        <p>
+          <strong>
+            Chispot is not for children. You must be at least 16 years old to
+            hold an account.
+          </strong>
+          We do not knowingly collect personal information from anyone under 16.
+        </p>
+        <p>
+          If you are a parent or guardian and believe your child has created an
+          account, email
+          <a href="mailto:admin@chispots.com">admin@chispots.com</a>. We will
+          terminate the account and delete the associated information.
+        </p>
+
+        <h2>Security</h2>
+        <p>
+          Passwords are stored as salted hashes. Traffic between the app and our
+          servers is encrypted in transit, and media is served over signed,
+          expiring URLs. No system is perfectly secure, but if a breach affects
+          you we will tell you and the relevant authority as the law requires.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          When this policy changes we will update the date at the top of this
+          page, and for material changes we will tell you in the app.
         </p>
 
         <h2>Contact us</h2>
         <p>
-          Questions? Email us at
+          Chispot Inc., Ottawa, Ontario, Canada —
           <a href="mailto:admin@chispots.com">admin@chispots.com</a>.
         </p>
 
