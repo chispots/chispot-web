@@ -9,12 +9,6 @@
       content="The agreement between you and Chispot Inc. for use of the Chispot app."
     />
     <meta name="theme-color" content="#339AF0" />
-    <!-- LAUNCH SLOT — deployed but unlisted until the app ships. The URL must
-         resolve (the registration checkbox and the Settings row open it, and an
-         App Review pass will tap it), but nothing on the marketing site links
-         here and search engines are asked to skip it. At launch: delete this
-         meta and add the footer link in index.html. -->
-    <meta name="robots" content="noindex" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -34,7 +28,7 @@
       <div class="wrap">
         <h1>Terms of Service</h1>
         <!-- This date is the document's version. It is stamped onto every
-             acceptance as `termsVersion`, so it MUST stay in step with
+             acceptance as its `version`, so it MUST stay in step with
              LegalConstants.CURRENT_TERMS_VERSION in @chispots/shared — bump both
              together whenever this document changes materially, or users are
              re-prompted for a version that does not exist (or worse, not
