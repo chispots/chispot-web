@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#339AF0" d="M16 2C10.48 2 6 6.48 6 12c0 7.5 10 18 10 18s10-10.5 10-18c0-5.52-4.48-10-10-10z"/>
-  <circle cx="16" cy="12" r="3.6" fill="#ffffff"/>
+<!-- The same badge as the site header: the white Chispot mark on a brand-blue
+     circle (styles.css .brand-badge). logo.png is white on transparency, so it
+     needs the blue behind it or it disappears into a light tab strip.
+
+     Geometry and colours come from chispot_mobile/brand.json (markPath,
+     markViewBox, brandColour, markColour); this repo cannot import it, so a
+     rebrand updates this file too. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="#339AF0" />
+  <path
+    fill="#FFFFFF"
+    d="M 34.5 17.51 A 36 36 0 1 0 82.49 65.5 A 5.5 5.5 0 0 0 76.66 57.7 A 30 30 0 0 1 42.3 23.34 A 5.5 5.5 0 0 0 34.5 17.51 Z"
+  />
 </svg>
