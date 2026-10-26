@@ -3,61 +3,111 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chispot — Coming Soon</title>
-    <meta name="description" content="Launching soon on iOS and Android." />
+    <title>Chispot — Every place has a story</title>
+    <meta
+      name="description"
+      content="Find your chispot, find your community. Start a chispot, bring your people, and share photos, videos and stories. Now on iOS and Android."
+    />
     <meta name="theme-color" content="#339AF0" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
     <!-- Open Graph / social preview -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Chispot" />
-    <meta property="og:title" content="Chispot — Coming Soon" />
+    <meta property="og:title" content="Chispot — Every place has a story" />
     <meta
       property="og:description"
-      content="Launching soon on iOS and Android."
+      content="Find your chispot, find your community. Start a chispot, bring your people, and share photos, videos and stories. Now on iOS and Android."
     />
     <meta property="og:url" content="https://chispots.com/" />
     <meta name="twitter:card" content="summary" />
 
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="wrap">
-        <a class="brand" href="/" aria-label="Chispot home">
-          <span class="brand-badge">
-            <img src="logo.png" alt="" />
-          </span>
-          Chispot
-        </a>
-      </div>
-    </header>
-
+  <body class="home">
     <main>
       <section class="hero">
-        <div class="wrap">
-          <span class="eyebrow"><span class="dot"></span>Coming soon</span>
+        <div class="wrap wrap--wide hero-grid">
+          <div class="hero-text">
+            <div class="hero-brand">
+              <!-- The bare mark as a moon in the sky, homepage only — the
+                   document pages keep the badge. Lit as the app lights it
+                   (chispot_mobile Logo.tsx): a bottom-left to top-right fade,
+                   without the craters. Its strength sits between the app's
+                   `soft` (0.4 → 0.1) and `bold` (1 → 0.1) shades, set for
+                   this sky. Path and viewBox from
+                   chispot_shared/src/brand.json; this repo cannot import
+                   either source, so a change to them updates this file too. -->
+              <svg
+                class="sky-moon"
+                viewBox="0 0 100 100"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <defs>
+                  <linearGradient id="sky-moon-light" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0" stop-opacity="0.5" />
+                    <stop offset="1" stop-opacity="0.15" />
+                  </linearGradient>
+                </defs>
+                <path
+                  fill="url(#sky-moon-light)"
+                  d="M 34.5 17.51 A 36 36 0 1 0 82.49 65.5 A 5.5 5.5 0 0 0 76.66 57.7 A 30 30 0 0 1 42.3 23.34 A 5.5 5.5 0 0 0 34.5 17.51 Z"
+                />
+              </svg>
 
-          <h1><span class="accent">Chispot</span> - Coming Soon</h1>
+              <a class="wordmark" href="/" aria-label="Chispot home">Chispot</a>
+            </div>
 
-          <p class="lede">Launching on iOS and Android.</p>
+            <div class="hero-copy">
+              <h1>Every place <span class="accent">has a story.</span></h1>
 
-          <!-- STORE SLOT — at launch, replace this block with the App Store and
-               Google Play badges linking to the live listings. -->
-          <div class="stores">
-            <a
-              class="cta"
-              href="mailto:admin@chispots.com?subject=Notify%20me%20when%20Chispot%20launches"
-              >Get notified</a
-            >
-            <span class="store-note">iOS &amp; Android · 2026</span>
+              <p class="lede">
+                Find your chispot, find your community.
+              </p>
+
+              <!-- Official, unmodified badge art (Apple and Google both require
+                   it). URLs mirror chispot_backend's appIdentity.ts and
+                   linkPage.ts, so the site and a shared link always name the
+                   same listings. -->
+              <div class="stores">
+                <a class="store-badge" href="https://apps.apple.com/app/id6812138006">
+                  <img
+                    src="badges/app-store.svg"
+                    alt="Download on the App Store"
+                    height="48"
+                  />
+                </a>
+                <a
+                  class="store-badge"
+                  href="https://play.google.com/store/apps/details?id=com.chispot.mobile"
+                >
+                  <img
+                    src="badges/google-play.svg"
+                    alt="Get it on Google Play"
+                    height="48"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="device">
+              <img
+                src="screens/home.png"
+                alt=""
+                width="1080"
+                height="2400"
+              />
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="wrap">
+      <div class="wrap wrap--wide">
         <div class="row">
           <span>© 2026 Chispot Inc.</span>
           <span class="sep">·</span>

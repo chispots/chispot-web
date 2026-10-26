@@ -5,7 +5,12 @@
  */
 
 :root {
-  /* Brand — one blue everywhere (matches the app accent, palette.blue500). */
+  /* Brand — one blue everywhere: the app's palette.brand, from
+     chispot_shared/src/brand.json (brandColour). This repo cannot import it,
+     so a rebrand updates this value too. Every other blue below is derived
+     from it — tinted toward white (or black, in dark) or mixed toward
+     transparent — never restated, so changing this one line repaints the
+     site. */
   --accent: #339af0;
 
   /* Light theme (default) */
@@ -16,7 +21,22 @@
   --text-secondary: #555555;
   --text-tertiary: #888888;
   --border: #e1e1e6;
-  --accent-surface: rgba(51, 154, 240, 0.12);
+  --accent-surface: color-mix(in srgb, var(--accent) 12%, transparent);
+  /* Lighter end of the headline gradient. */
+  --accent-soft: color-mix(in srgb, var(--accent) 65%, white);
+
+  /* Homepage sky — the page wash, and the glow it gathers into behind the
+     device. */
+  --sky-top: color-mix(in srgb, var(--accent) 5%, white);
+  --sky-bottom: color-mix(in srgb, var(--accent) 15%, white);
+  --sky-glow: color-mix(in srgb, var(--accent-soft) 35%, transparent);
+
+  /* Hero art — the sky behind the device. */
+  --hero-glow: color-mix(in srgb, var(--accent) 24%, transparent);
+  --hero-cloud: rgba(255, 255, 255, 0.9);
+  --shadow-device: 0 50px 80px -30px rgba(0, 0, 0, 0.3);
+  /* A phone is black in either theme, so the bezel is not themed. */
+  --device-bezel: #111113;
 
   /* Scale */
   --space-xs: 4px;
@@ -30,6 +50,7 @@
   --radius-lg: 16px;
   --radius-pill: 999px;
   --maxw: 720px;
+  --maxw-wide: 1120px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,7 +62,13 @@
     --text-secondary: #aeaeb2;
     --text-tertiary: #8e8e93;
     --border: #3a3a3c;
-    --accent-surface: rgba(51, 154, 240, 0.18);
+    --accent-surface: color-mix(in srgb, var(--accent) 18%, transparent);
+    --sky-top: var(--bg);
+    --sky-bottom: color-mix(in srgb, var(--accent) 8%, black);
+    --sky-glow: color-mix(in srgb, var(--accent) 18%, transparent);
+    --hero-glow: color-mix(in srgb, var(--accent) 22%, transparent);
+    --hero-cloud: color-mix(in srgb, var(--accent) 10%, transparent);
+    --shadow-device: 0 50px 80px -30px rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -78,6 +105,22 @@ a:hover {
   margin: 0 auto;
   padding: 0 var(--space-xl);
 }
+/* Homepage: a sky over the whole page, so header and footer sit on it rather
+   than on a white band. No-repeat over a matching colour, so a page shorter
+   than the viewport ends in sky instead of restarting the gradient. */
+.home {
+  background-color: var(--sky-bottom);
+  background-image:
+    radial-gradient(ellipse 60% 70% at 75% 45%, var(--sky-glow), transparent 70%),
+    linear-gradient(180deg, var(--sky-top), var(--sky-bottom));
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* The homepage's two-column hero needs more room than a document column. */
+.wrap--wide {
+  max-width: var(--maxw-wide);
+}
 
 /* ---- Brand mark ---- */
 .brand {
@@ -108,85 +151,227 @@ a:hover {
   display: block;
 }
 
+/* ---- Homepage brand: the moon and the name ---- */
+/* The row above the hero copy; the moon leaves it on a wide screen. */
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+/* The moon's alpha is the gradient's stops (index.html) and nothing else — an
+   `opacity` here would multiply with them, as Logo.tsx warns. */
+.sky-moon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+}
+.sky-moon stop {
+  stop-color: var(--accent);
+}
+/* Only a wide screen has a gutter big enough to hang the moon in the corner
+   without it reaching the text column; narrower, it sits beside the name.
+   Positioned against .hero, the nearest positioned ancestor. */
+@media (min-width: 1600px) {
+  .sky-moon {
+    position: absolute;
+    top: var(--space-xl);
+    left: max(var(--space-2xl), calc(50% - 900px));
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* The name, set in the headline's weight so the two read as one voice. Caps by
+   style, not by markup, so the text stays "Chispot"; tracked wide so the
+   letters stand apart. */
+.wordmark {
+  font-size: clamp(28px, 3.5vw, 40px);
+  letter-spacing: 0.35em;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--accent);
+}
+.wordmark:hover {
+  text-decoration: none;
+}
+.wordmark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
 /* ---- Site header ---- */
 .site-header {
   padding: var(--space-xl) 0;
 }
 
-/* ---- Hero (coming soon) ---- */
+/* ---- Hero ---- */
 .hero {
   min-height: calc(100vh - 220px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: var(--space-2xl) 0;
+  /* The sky bleeds past the column; clip it rather than scroll sideways. */
+  overflow-x: clip;
+  /* Anchors the wide-screen moon to the page's top-left. */
+  position: relative;
 }
 
-.eyebrow {
-  display: inline-flex;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: var(--space-sm);
-  align-self: flex-start;
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-pill);
-  background: var(--accent-surface);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  gap: var(--space-3xl);
 }
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
+
+/* Accent rules above and below the copy — decoration, so no markup. */
+.hero-copy::before,
+.hero-copy::after {
+  content: "";
+  display: block;
+  width: min(400px, 100%);
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0 25%,
+    var(--accent-surface) 25%,
+    transparent
+  );
+}
+.hero-copy::before {
+  margin-bottom: var(--space-3xl);
+}
+.hero-copy::after {
+  margin-top: var(--space-3xl);
 }
 
 .hero h1 {
-  font-size: clamp(34px, 7vw, 56px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-  margin: var(--space-xl) 0 var(--space-lg);
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  margin: 0 0 var(--space-xl);
 }
 .hero h1 .accent {
+  display: block;
   color: var(--accent);
+  /* Room for the descender, which background-clip would otherwise cut. */
+  padding-bottom: 0.08em;
+}
+/* Only go transparent where the gradient can paint the glyphs. */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero h1 .accent {
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .lede {
-  font-size: clamp(18px, 2.5vw, 21px);
+  font-size: clamp(19px, 2.4vw, 24px);
+  line-height: 1.4;
   color: var(--text-secondary);
-  max-width: 34em;
+  max-width: 22em;
   margin: 0 0 var(--space-2xl);
 }
 
-/* ---- Store slot (swap in real badges + links at launch) ---- */
+/* ---- Store badges (official art — sized, never restyled) ---- */
 .stores {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
-.store-note {
-  color: var(--text-tertiary);
-  font-size: 15px;
-}
-.cta {
+.store-badge {
   display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl);
-  border-radius: var(--radius-pill);
-  background: var(--accent);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background 0.15s ease;
+  border-radius: var(--radius-md);
+  transition: opacity 0.15s ease;
 }
-.cta:hover {
-  opacity: 0.9;
-  text-decoration: none;
+.store-badge:hover {
+  opacity: 0.85;
+}
+.store-badge:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: var(--space-xs);
+}
+.store-badge img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+/* ---- Hero art: the device on a sky ---- */
+.hero-art {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-3xl) 0;
+  isolation: isolate;
+}
+/* The glow disc behind the device. */
+.hero-art::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(600px, 130%);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
+  z-index: -1;
+}
+/* Cloud bank around the device's foot. */
+.hero-art::after {
+  content: "";
+  position: absolute;
+  left: -15%;
+  right: -15%;
+  bottom: 0;
+  height: 45%;
+  background:
+    radial-gradient(ellipse 40% 50% at 15% 70%, var(--hero-cloud), transparent 70%),
+    radial-gradient(ellipse 35% 45% at 85% 55%, var(--hero-cloud), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 50% 95%, var(--hero-cloud), transparent 70%);
+  filter: blur(12px);
+  z-index: -1;
+}
+
+.device {
+  width: min(300px, 70vw);
+  padding: var(--space-md);
+  border-radius: 48px;
+  background: var(--device-bezel);
+  box-shadow: var(--shadow-device);
+  transform: perspective(1800px) rotateY(-14deg) rotateZ(4deg);
+}
+.device img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 36px;
+}
+
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .hero-copy::before {
+    margin-bottom: var(--space-2xl);
+  }
+  .hero-copy::after {
+    margin-top: var(--space-2xl);
+  }
+  .device {
+    width: min(240px, 62vw);
+    transform: rotateZ(3deg);
+  }
 }
 
 /* ---- Footer ---- */
