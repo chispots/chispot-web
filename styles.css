@@ -393,6 +393,18 @@ a:hover {
 .site-footer a {
   color: var(--text-secondary);
 }
+/* The glyph keeps Instagram's own colours (index.html), so only its size and
+   spacing live here. */
+.site-footer .instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.site-footer .instagram svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
 
 /* ---- Document pages (privacy / support) ---- */
 .doc {
